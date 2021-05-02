@@ -23,6 +23,10 @@ import { NgxModuleModule } from './shared/ngx-module/ngx-module.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilesModule } from './shared/files/files.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/auth/token-interceptor.service';
+import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -49,12 +53,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminModule,
     MaterialModule,
     NgxModuleModule,
+    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     FilesModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
