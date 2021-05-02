@@ -76,7 +76,7 @@ export class CategoryService {
   getProducts(categoryId:number):Observable<Product[]>{
     try{
      
-      return this.http.get<Product[]>(this.categoryUrl+'/products');
+      return this.http.get<Product[]>(this.categoryUrl+'/products/'+categoryId);
     }
     catch(error){
       this.errorHandler.handleError(error);

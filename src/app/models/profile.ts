@@ -1,3 +1,6 @@
+import { Cart } from "./cart";
+import { User } from "./user";
+
 export class Profile {
     id:number;
     firstName:string;
@@ -8,4 +11,6 @@ export class Profile {
     country:string;
     city:string;
     address:string;
+    user:User;
+    cart:Cart;
 }
