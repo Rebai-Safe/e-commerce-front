@@ -37,4 +37,8 @@ export class TokenStorageService {
 
     return {};
   }
+
+  public isLoggedIn() {
+    return !!localStorage.getItem(TOKEN_KEY);
+  }
 }

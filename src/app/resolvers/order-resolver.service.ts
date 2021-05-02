@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Order } from '../models/order';
+import { OrderService } from '../services/order/order.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderResolverService {
+export class OrderResolverService implements Resolve<Order[]> {
 
-  constructor() { }
+  constructor(private orderService:OrderService) { }
+  
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order[]>  {
+    return this.orderService.getOrderds();
+  }
+
+  
 }
