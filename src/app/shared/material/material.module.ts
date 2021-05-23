@@ -45,6 +45,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
+
 const MaterialComponents = [
   MatCheckboxModule,
   MatRadioModule,
@@ -114,7 +115,8 @@ const MaterialComponents = [
   MatTreeModule,
   PortalModule,
   ScrollingModule,
-];
+  
+]; 
 
 @NgModule({
   declarations: [],

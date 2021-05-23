@@ -26,14 +26,14 @@ export class ErrorInterceptorService implements HttpInterceptor{
                }
              })
            }
-           else {
+           /*else {
             this.router.navigate(['/applicationError',error.status],{
               queryParams : {
                 "ERROR.Status": error.status
               }
             })
           }
-         
+         */
           const err=error.message || error.statusText;
           return throwError(err);
 

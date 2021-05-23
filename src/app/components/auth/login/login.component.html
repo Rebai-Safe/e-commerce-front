@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    Login
+                </h3>
+            </div>
+            <div class="card-body">
+                <form class="form" novalidate="novalidate" [formGroup]="authForm" (ngSubmit)="userLogin()">
+
+                    <mat-form-field appearance="fill" style="width:100%">
+                        <mat-label>User</mat-label>
+                        <input matInput type="test" formControlName="userName" required="required">
+                    </mat-form-field>
+
+                        <mat-form-field appearance="outline" style="width:100%">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="showPassword ?  'text':'password'" formControlName="password" required>
+                                <button  type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword" [attr.aria-label]="'Hide password'">
+                                    <mat-icon>{{showPassword ? 'visibility':'visibility_off'}}
+
+                                    </mat-icon>
+                                </button>
+
+                            </mat-form-field>
+
+                            <button type="submit" class="btn btn-outline-success pull-right float-right" [disabled]="authForm.invalid">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #invalidCredentials>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                Invalid Credentials
+                </h4>
+                <button type="button" class="clode pull-right" (click)="hide" aria-label="close">
+                    <span aria-hidden="true">&times;
+
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="alert alert-danger" role="alert">
+                    Username or password are incorrect
+                </div>
+                <button type="button" class="btn btn-danger" (click)="authForm.reset(); hide()">
+                    try again
+                </button>
+            </div>
+        </ng-template>

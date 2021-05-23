@@ -1,0 +1,78 @@
+<div class="card ">
+    <div class="card-header">
+        <div class="d-flex justify-content-between m-auto">
+            <h2 class="card-title m-auto titre">Profile Information</h2>
+            <div class="card">
+                <!--  <div class="card-header" *ngIf="profile && profile.image"> -->
+                <!--  <img [src]="profile.image" class="img-thumbnail" height="120" width="200" alt=""/> -->
+            </div>
+            <div class="card-footer justify-content-center">
+                <!-- <p *ngIf="profile && profile.image" class="lead text-center">Changing Profile Picture</p> -->
+                <!--  <div *ngIf="profile && profile.image" class="input-group ">-->
+                <div class="custom-file">
+                    <!-- <input type="file" class="custom-file-input"
+                       ng2FileSelect  [uploader]="uploader" (change)="onFileSelect($event)" id="changedImage" name="image"
+                       required> -->
+                    <!-- <label class="custom-file-label" for="changedImage">You have chosen: {{selectedFile}}</label> -->
+                </div>
+                <div class="input-group-append">
+                    <!--  <button type="button" class=" input-group-text btn btn-outline-success"
+                (click)="changingExistPicture()">Change 
+                </button> -->
+                </div>
+            </div>
+            <!-- <p *ngIf="profile && !profile.image" class="lead text-center">Uploading Profile Picture</p>
+            <div *ngIf="profile && !profile.image" class="input-group "> 
+              <div class="custom-file">
+                <input ng2FileSelect [uploader]="uploader" (change)="onFileSelect($event)" type="file"
+                       class="custom-file-input" id="newImage"
+                       name="image"
+                       required>
+                <label class="custom-file-label" for="newImage">You have chosen: {{selectedFile}} </label>
+              </div>
+              <div class="input-group-append">
+                <button type="button" class="input-group-text btn btn-outline-success"
+                        (click)="uploadingNewPicture()">Upload
+                </button>
+              </div>-->
+        </div>
+    </div>
+</div>
+<!-- </div>
+    </div>
+  </div> -->
+
+<div class="card-body">
+    <form [formGroup]="profileForm">
+        <div class="d-flex justify-content-between m-auto p-2">
+            <mat-form-field style="width: 300px;">
+                <input type="text" formControlName="firstName" matInput placeholder="First Name" required>
+            </mat-form-field>
+        </div>
+
+        <hr class="uk-divider-icon m-2">
+
+        <mat-form-field style="width: 300px;" class="ml-3">
+            <input type="text" id="lastname" formControlName="lastName" matInput placeholder="Last Name"
+                aria-label="Last Name" required />
+        </mat-form-field>
+
+        <hr class="uk-divider-icon m-2">
+
+        <mat-form-field style="width: 300px;">
+            <input type="email" id="email" formControlName="email" aria-label="Email" matInput placeholder="Email"
+                required />
+        </mat-form-field>
+
+        <hr class="uk-divider-icon m-2">
+        <div class="d-flex justify-content-between m-auto p-2">
+            <mat-select-country class="className" appearance="outline" label="Country" formControlName="country"
+                placeholder="Country"
+                
+                ></mat-select-country>
+        </div>
+        <hr class="uk-divider-icon m-2">
+      
+        <button type="submit" (click)="updateProfile()" [disabled]="profileForm.invalid">Valider</button>
+    </form>
+    </div>

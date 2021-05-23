@@ -6,11 +6,7 @@ export class Profile {
     firstName:string;
     lastName:string;
     email:string;
-    gender:string;
-    age:string;
     country:string;
-    city:string;
-    address:string;
     user:User;
     cart:Cart;
 }

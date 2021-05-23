@@ -4,6 +4,7 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
@@ -16,7 +17,8 @@ import { ManageCategoriesComponent } from './components/manage-categories/manage
     ManageOrdersComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

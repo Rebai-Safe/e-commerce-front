@@ -11,7 +11,7 @@ export class ErrorHandler {
         console.error('Server Side Error'+errorResponse);
 
     } else {
-        return alert('please refresh the website again,maybe there are problems with the server')
+        return alert('please refresh the website again, maybe there are problems with the server')
     }
     }
 }

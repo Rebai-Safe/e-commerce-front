@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServerResponse } from 'src/app/models/server-response';
+
 import {environment} from 'src/environments/environment'
 import { TokenInterceptorService } from './token-interceptor.service';
 import { TokenStorageService } from './token-storage-service';
@@ -20,8 +22,8 @@ public AUTH_API=environment.baseUrl+'authenticate';
 
   }
 
-  authenticate(username,password){
-    return this.httpClient.post(this.AUTH_API, {username,password},httpOptions)
+  authenticate(user){
+    return this.httpClient.post<ServerResponse>(this.AUTH_API, user,httpOptions)
      }
 
   logout(){

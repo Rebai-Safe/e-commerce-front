@@ -13,7 +13,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { AlertComponent } from './shared/alert/alert.component';
+
 import { ApplicationErrorComponent } from './shared/application-error/application-error.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ResourceNotFoundComponent } from './shared/resource-not-found/resource-not-found.component';
@@ -26,6 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CartComponent } from './components/cart/cart.component';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
+import { AlertDialogComponent } from './shared/components/alert-dialog/alert-dialog.component';
 
 
 @NgModule({
@@ -40,24 +45,29 @@ import { ErrorInterceptorService } from './services/auth/error-interceptor.servi
     OrderComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    AlertComponent,
+  
     ApplicationErrorComponent,
     PageNotFoundComponent,
     ResourceNotFoundComponent,
+    ProfileComponent,
+    CartComponent,
+    AlertDialogComponent,
+   
    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
     MaterialModule,
     NgxModuleModule,
     HttpClientModule,
+    AdminRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     FilesModule,
     ReactiveFormsModule,
+    MatSelectCountryModule.forRoot('fr'),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

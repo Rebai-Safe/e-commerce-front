@@ -50,7 +50,7 @@ export class ProductService {
 
    updateCartQuantity(productId: number ,cartQuantity: number):Observable<void>{
     const params = new HttpParams().set('CartQuantity',cartQuantity.toString())
-    const updateCartQteUrl = `${this.productUrl}/${productId}/addtocart/${cartItemId}`
+    const updateCartQteUrl = `${this.productUrl}/${productId}/addtocart/${cartQuantity}`
     try{
      return this.http.post<void>(updateCartQteUrl, null, {
        params

@@ -4,40 +4,42 @@
             <mat-icon>menu</mat-icon>
         </button>
         <div class="col-md-7 justify-content-start">
-            <a mat-button>Safe website</a>
-            <a mat-button>Home</a>
-            <a mat-button>Contact us</a>
-            <a mat-button>Product</a>
+            <a mat-button routerLink="/home" routerLinkActive="active">Bi3li</a>
+            <a mat-button routerLink="/contact" routerLinkActive="active">Contact us</a>
+            <a mat-button routerLink="/prodcuts" routerLinkActive="active">Product</a>
     </div>
 
 
     <div class="col-md-5 justify-content-end">
        
-            <a mat-button>Login</a>
-            <a mat-button>Logout</a>
-            <a mat-button>Register</a>
-            <a mat-button [matMenuTriggerFor]="managementMenu">Management</a>
+            <a mat-button routerLink="/auth/login" routerLinkActive="active" *ngIf="!userService.isLoggedIn()">Login</a>
+            <a mat-button (click)="userService.userLogout()" *ngIf="userService.isLoggedIn()">Logout</a>
+            <a mat-button routerLink="/auth/register" routerLinkActive="active" *ngIf="!userService.isLoggedIn()">Register</a>
+            <a mat-button   *ngIf="userService.isLoggedIn && (userService.currentUser && userService.currentUser.isAdmin)" [matMenuTriggerFor]="managementMenu">Management</a>
             <mat-menu #managementMenu>
                 <a class="menu-item" mat-menu-item>Dashboard</a>
                 <a class="menu-item" mat-menu-item>Categories</a>
                 <a class="menu-item" mat-menu-item>Users</a>
             </mat-menu>
 
-            <a  mat-button [matMenuTriggerFor]="userMenu">User</a>
+            <a  mat-button *ngIf="userService.isLoggedIn() && userService.currentUser" [matMenuTriggerFor]="userMenu">{{userService.currentUser.userName}}</a>
+            <mat-menu #userMenu>
+                <a class="menu-item" mat-menu-item routerLink="/profile" >Profile</a>
+                <a class="menu-item" mat-menu-item>Orders</a>
+                
+            </mat-menu>
          
-            <a mat-button style="font-size: 23px;">
+            <a mat-button style="font-size: 23px;" routerLink="/cart" routerLinkActive="active" *ngIf="userService.isLoggedIn() && userService.cart">
                 <mat-icon  matBadge="5" 
                 matBadgeOverlap="false"
                 matBadgePosition="above after"
                 matBadgeSize="medium"
-                matBadgeColor="warn">shopping_cart</mat-icon></a>
+                matBadgeColor="warn">shopping_cart
+               </mat-icon>
+            </a>
   </div>
 
-        <mat-menu #userMenu>
-        <a class="menu-item" mat-menu-item>Profile</a>
-        <a class="menu-item" mat-menu-item>Orders</a>
-        <a class="menu-item" mat-menu-item>Logout</a>
-    </mat-menu>
+     
     </mat-toolbar-row>
 </mat-toolbar>
 
