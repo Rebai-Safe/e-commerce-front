@@ -10,17 +10,7 @@ export class AdminComponent implements OnInit {
   message;
   constructor(private userService: UserService) { }
 
-  forAdmin(){
-    this.userService.forAdmin().subscribe(
-      (response)=> {
-        console.log(response);
-        this.message = response;
-      },
-
-    )
-  }
-
-  ngOnInit(): void {
+   ngOnInit(): void {
    
       this.userService.forAdmin().subscribe(
         (response)=> {

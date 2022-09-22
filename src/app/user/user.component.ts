@@ -12,15 +12,15 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   forUser(){
-    this.userService.forAdmin().subscribe(
+    this.userService.forUser().subscribe(
       (response)=> {
-        console.log(response);
         this.message = response;
       },
 
     )
   }
   ngOnInit(): void {
+    this.forUser();
   }
 
 }

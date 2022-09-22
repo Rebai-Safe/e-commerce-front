@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   }
   
   login(loginForm){
+    console.log(loginForm.value.userPassword);
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
         this.userAuthService.setRoles(response.user.roles)
