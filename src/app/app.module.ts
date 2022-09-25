@@ -20,6 +20,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule, } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { AddProductComponent } from './add-product/add-product.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AddProductComponent } from './add-product/add-product.component';
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
+    MatGridListModule,
     MatButtonModule,
     
   ],
