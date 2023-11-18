@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../services/product.service';
+import {map} from 'rxjs/operators';
+import {Product} from '../model/product.model';
+import {ImageProcessingService} from '../services/image-processing.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
 
-  ngOnInit(): void {
+  constructor(private productService: ProductService,
+              private imageProcessingService: ImageProcessingService) {
   }
 
+  ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  public getAllProducts() {
+    this.productService.getAllProducts().pipe(
+      map((x: Product[]) => x.map((product: Product) => this.imageProcessingService.createImages(product))))
+      .subscribe((response: Product[]) => {
+        this.products = response;
+      });
+  }
 }

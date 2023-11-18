@@ -1,5 +1,29 @@
 <div class="container mt-5">
-    <div class="card text-center" style="padding: 20px;" >
-        <h1>This is home page</h1>
+  <div class="row">
+    <div *ngFor="let product of products" class="col-xs-12 col-md-6 col-lg-3">
+      <div class="card p-0">
+        <div class="card-header">
+          {{product.productName}}
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img [src]="product.productImages[0].url" alt="">
+          </div>
+          <div class="mt-2">
+            <p
+              style="white-space: inherit; text-overflow: ellipsis; height: 40px; width: 288px; overflow: hidden">{{product.productDescription}}</p>
+          </div>
+          <div class="mt-2">
+            <b>{{product.productDiscountedPrice | currency:'EUR':true }}</b>&nbsp;
+            <b style="text-decoration: line-through">{{product.productActualPrice | currency:'EUR':true }}</b>
+          </div>
+          <div class="mt-2">
+            <button mat-raised-button color="warn">View Details</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+

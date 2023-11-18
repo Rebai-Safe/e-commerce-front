@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +23,12 @@ import {MatButtonModule, } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import { DragDirective } from './directives/drag.directive';
+import { ListProductComponent } from './list-product/list-product.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ShowProductImageDialogComponent } from './show-product-image-dialog/show-product-image-dialog.component';
+registerLocaleData(localeFr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,27 +38,36 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HeaderComponent,
     ForbiddenComponent,
     LoginComponent,
-    AddProductComponent
+    AddProductComponent,
+    DragDirective,
+
+    ListProductComponent,
+    ShowProductImageDialogComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
+    MatIconModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
+    MatTableModule,
+    MatDialogModule,
     MatGridListModule,
     MatButtonModule,
-    
+
   ],
   providers: [AuthGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  },
+    { provide: LOCALE_ID, useValue: 'fr-FR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

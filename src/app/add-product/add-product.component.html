@@ -3,36 +3,56 @@
         <div class="row">
             <div class="col-6">
                 <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Product Name</mat-label>
-                    <input matInput="matInput" [(ngModel)]="product.productName" name="productName" placeholder="Product Name">
-                </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput="matInput" [(ngModel)]="product.productName" name="productName"
+                            placeholder="Product Name">
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Product description</mat-label>
-                    <input matInput="matInput" [(ngModel)]="product.productDescription" name="productDescription" placeholder="Product description">
-                </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product description</mat-label>
+                        <input matInput="matInput" [(ngModel)]="product.productDescription" name="productDescription"
+                            placeholder="Product description">
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Product actual price</mat-label>
-                    <input matInput="matInput" [(ngModel)]="product.productActualPrice" name ="productActualPrice" placeholder="Placeholder">
-                </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product actual price</mat-label>
+                        <input matInput="matInput" [(ngModel)]="product.productActualPrice" name="productActualPrice"
+                            placeholder="Placeholder">
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>product discounted price</mat-label>
-                    <input matInput="matInput" [(ngModel)]="product.productDiscountedPrice" name="productDiscountedPrice" placeholder="product discounted price">
-                </mat-form-field>
-                <div align="end">
-                    <button type="submit" mat-stroked-button color="primary" style="margin-right:3px">Add product</button>
-                    <button mat-stroked-button color="primary">clear</button>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>product discounted price</mat-label>
+                        <input matInput="matInput" [(ngModel)]="product.productDiscountedPrice"
+                            name="productDiscountedPrice" placeholder="product discounted price">
+                    </mat-form-field>
+                    <div align="end">
+                        <button *ngIf="isNewProduct" type="submit" mat-stroked-button color="primary" style="margin-right:3px">Add
+                            product
+                        </button>
+                        <button *ngIf="!isNewProduct" type="submit" mat-stroked-button color="primary" style="margin-right:3px">
+                          update product
+                        </button>
+                        <button mat-stroked-button color="primary">clear</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+
+                <div class="dropZone" appDrag (files)="fileDropped($event)">
+                    <div class="text-wrapper">
+                        <div class="center">
+                            drag and drop your dile or
+                            <a (click)="selectFile.click()" class="browse-button">browse</a>
+                            a file
+                        </div>
+
+                    </div>
                 </div>
-            </form> 
-                </div>
-                <div class="col-6">
-                    <input type="file" multiple value="select" #selectFile
-                    (change)="onFileSelected($event)"
-                    >
-                
+
+                <input type="file" multiple value="select" #selectFile style="display: none;"
+                    (change)="onFileSelected($event)">
+
                 <div class="mt-5">
                     <div class="row">
                         <mat-grid-list cols="4" rowHeight="1:1">
@@ -47,8 +67,8 @@
 
                 </div>
             </div>
-            </div>
-
-
         </div>
+
+
     </div>
+</div>
