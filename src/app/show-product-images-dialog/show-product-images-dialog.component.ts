@@ -4,10 +4,10 @@ import { FileHandler } from '../model/file-handler.model';
 
 @Component({
   selector: 'app-show-product-image-dialog',
-  templateUrl: './show-product-image-dialog.component.html',
-  styleUrls: ['./show-product-image-dialog.component.scss']
+  templateUrl: './show-product-images-dialog.component.html',
+  styleUrls: ['./show-product-images-dialog.component.scss']
 })
-export class ShowProductImageDialogComponent implements OnInit {
+export class ShowProductImagesDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 

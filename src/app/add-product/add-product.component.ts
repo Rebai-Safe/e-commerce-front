@@ -41,7 +41,7 @@ export class AddProductComponent implements OnInit {
       this.product.productImages = []
     },
     (error) => {
-      console.log("From add product",error);
+      console.log("From add product: ",error);
     }
    )
   }

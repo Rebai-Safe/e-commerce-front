@@ -3,6 +3,7 @@ import {ProductService} from '../services/product.service';
 import {map} from 'rxjs/operators';
 import {Product} from '../model/product.model';
 import {ImageProcessingService} from '../services/image-processing.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +13,42 @@ import {ImageProcessingService} from '../services/image-processing.service';
 export class HomeComponent implements OnInit {
 
   products: Product[] = [];
+  pageNumber: number = 0;
+  showButton = false;
 
-  constructor(private productService: ProductService,
+  constructor(private router: Router,
+              private productService: ProductService,
               private imageProcessingService: ImageProcessingService) {
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getProducts();
   }
 
-  public getAllProducts() {
-    this.productService.getAllProducts().pipe(
+  public getProducts(keyword: string = "") {
+    this.productService.getProducts(this.pageNumber, keyword).pipe(
       map((x: Product[]) => x.map((product: Product) => this.imageProcessingService.createImages(product))))
       .subscribe((response: Product[]) => {
-        this.products = response;
+        // 4 is the size of the page in the backend
+        this.showButton = response.length == 4;
+        response.forEach(p => {
+          this.products.push(p);
+        })
       });
+  }
+
+  gotToProductDetails(productId: number) {
+    this.router.navigate(['/product-details', {productId: productId}])
+  }
+
+  loadMoreProducts() {
+    this.pageNumber++;
+    this.getProducts();
+  }
+
+  searchProducts(keyword: string) {
+    this.pageNumber = 0;
+    this.products = [];
+    this.getProducts(keyword);
   }
 }

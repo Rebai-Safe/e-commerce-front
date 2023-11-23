@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../services/user-auth.service';
 import { UserService } from '../services/user.service';
@@ -10,10 +10,14 @@ import { UserService } from '../services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private userAuthService: UserAuthService, private router: Router, public userService: UserService) { }
+  @ViewChild('sideMenu') sideMenu: ElementRef;
+  constructor(private userAuthService: UserAuthService,
+              private renderer: Renderer2,
+              private router: Router) { }
 
-  
+
   ngOnInit(): void {
+
   }
 
   public isLoggedIn(){
@@ -33,4 +37,11 @@ export class HeaderComponent implements OnInit {
     return this.userAuthService.isUser();
   }
 
+  closeSideMenu() {
+    this.renderer.setStyle(this.sideMenu.nativeElement, 'right', '-200px');
+  }
+
+  openSideMenu() {
+    this.renderer.setStyle(this.sideMenu.nativeElement, 'right', '0');
+  }
 }

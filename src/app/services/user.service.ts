@@ -16,6 +16,9 @@ export class UserService {
         return this.httpClient.post(this.api_url + "/authenticate", loginData, {headers: this.requestHeader});
     }
 
+    public register(registerData){
+      return this.httpClient.post(`${this.api_url}/registerUser`, registerData, {headers: this.requestHeader});
+    }
     public forUser() {
         return this.httpClient.get(this.api_url + '/forUser', {responseType: 'text'})
     }
@@ -25,21 +28,23 @@ export class UserService {
   }
 
     public roleMatch(allowedRoles): boolean {
-        let isMatch = false;
+        //let isMatch = false;
         const userRoles: any = this.userAuthService.getRoles();
+        const userRolesSet = new Set(userRoles.map(role => role.roleName));
+        return allowedRoles.some(role => userRolesSet.has(role));
 
-        if (userRoles != null && userRoles)
-            for (let i = 0; i < userRoles.length; i++) {
-                for (let j = 0; j < allowedRoles.length; j++) {
-                    if (userRoles[i].roleName === allowedRoles[j]) {
-                        isMatch = true;
-                        return isMatch
-                    } else {
-                        return isMatch
-                    }
-                }
-            }
-
+        // if (userRoles != null && userRoles)
+        //     for (let i = 0; i < userRoles.length; i++) {
+        //         for (let j = 0; j < allowedRoles.length; j++) {
+        //             if (userRoles[i].roleName === allowedRoles[j]) {
+        //                 isMatch = true;
+        //                 return isMatch
+        //             } else {
+        //                 return isMatch
+        //             }
+        //         }
+        //     }
 
     }
+
 }

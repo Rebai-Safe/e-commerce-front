@@ -11,8 +11,6 @@ export class ImageProcessingService {
   constructor(private sanitizer: DomSanitizer) { }
 
   public createImages(product: Product){
-    console.log("--------Product from processing image", product);
-    console.log("--------Product Images from processing image", product.productImages);
     const productImages: any[] = product.productImages;
     const productImagesToFileHandler: FileHandler[] = [];
 
@@ -24,6 +22,8 @@ export class ImageProcessingService {
       const finalFileHandle: FileHandler = {
         file: imageFile,
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile))
+        //This line of code is using Angular's DomSanitizer service to safely bypass security
+        // checks for a URL and create a trusted URL for a File object
       }
 
       productImagesToFileHandler.push(finalFileHandle);
@@ -35,6 +35,7 @@ export class ImageProcessingService {
 
 
    public dataURItoBlob(picBytes, imageType){
+     // decode Base64-encoded back to a byte[]
      const byteString = window.atob(picBytes);
      const arrayBuffer = new ArrayBuffer(byteString.length);
      const int8Array = new Uint8Array(arrayBuffer);

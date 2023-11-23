@@ -34,11 +34,11 @@ export class UserAuthService {
 
   public isAdmin(){
     const roles: any[] = this.getRoles();
-    return roles[0].roleName === 'Admin';
+    return roles[0].roleName === 'ADMIN';
   }
 
   public isUser(){
     const roles: any[] = this.getRoles();
-    return roles[0].roleName === 'User';
+    return roles[0].roleName === 'USER';
   }
 }

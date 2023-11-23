@@ -24,10 +24,18 @@ import { MatInputModule } from '@angular/material/input';
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { DragDirective } from './directives/drag.directive';
-import { ListProductComponent } from './list-product/list-product.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ShowProductImageDialogComponent } from './show-product-image-dialog/show-product-image-dialog.component';
+import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { CartComponent } from './cart/cart.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
+//https://www.youtube.com/watch?v=Zyxvm3v-_d8&list=PLZTETldyguF2bRz-ypCa3a8gumxeXB4pu&index=47
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -41,8 +49,15 @@ registerLocaleData(localeFr);
     AddProductComponent,
     DragDirective,
 
-    ListProductComponent,
-    ShowProductImageDialogComponent
+    ProductListComponent,
+    ShowProductImagesDialogComponent,
+    ProductDetailsComponent,
+    BuyProductComponent,
+    OrderConfirmationComponent,
+    RegisterUserComponent,
+    CartComponent,
+    UserOrdersComponent,
+    OrdersListComponent
   ],
   imports: [
     BrowserModule,

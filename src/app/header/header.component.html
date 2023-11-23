@@ -1,22 +1,28 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="fixed-top" color="primary">
   <span>
-    E-commerce Application
+    My shop
   </span>
 
   <span class="space-buttons"></span>
-  <button *ngIf="!isLoggedIn()" mat-raised-button color="primary" routerLink="/login">
+  <button *ngIf="!isLoggedIn()" mat-raised-button color="accent" routerLink="/login">
     Login
   </button>
 
-  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()">
-    Logout
-  </button>
- 
+     <div  *ngIf="isLoggedIn()">
+       <ul #sideMenu>
+         <li><a routerLink="/">Home</a></li>
+         <li *ngIf="isUser()"><a routerLink="/cart">cart</a></li>
+         <li *ngIf="isUser()"><a routerLink="/orders">My orders</a></li>
+         <li *ngIf="isAdmin()"><a routerLink="/product/add">Add product</a></li>
+         <li *ngIf="isAdmin()"><a  routerLink="/ordersList">orders list</a> </li>
+         <li *ngIf="isAdmin()"><a  routerLink="/product/list">products list</a> </li>
+         <li><button mat-raised-button color="warn" (click)="logout()">Logout</button></li>
+         <i class="bi bi-x close-icon"  (click)="closeSideMenu()"></i>
+       </ul>
+       <i class="bi bi-list menu-icon" (click)="openSideMenu()"></i>
+     </div>
+
 </mat-toolbar>
 
 
-<mat-toolbar color="primary" *ngIf="isLoggedIn()">
-  <button mat-raised-button color="primary" routerLink="/">Home</button>
-  <button mat-raised-button color="primary" *ngIf="isAdmin()" routerLink="/product/add">Add products</button>
-  <button mat-raised-button color="primary" *ngIf="isAdmin()" routerLink="/product/list">products list</button>
-</mat-toolbar>
+
