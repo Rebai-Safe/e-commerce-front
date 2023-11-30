@@ -8,8 +8,6 @@ import {LoginComponent} from './login/login.component';
 
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductDetailsComponent} from './product-details/product-details.component';
-import {CheckoutComponent} from './user/checkout/checkout.component';
-import {BuyProductResolverService} from './services/buy-product-resolver.service';
 import {RegisterUserComponent} from './register-user/register-user.component';
 
 const routes: Routes = [

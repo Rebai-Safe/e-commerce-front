@@ -15,12 +15,12 @@ export class ProductDetailsComponent implements OnInit {
   selectedProductIndex = 0;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private cartService:  CartService,
-              private productService: ProductService) {
-    this.product = this.route.snapshot.data['product'];
+              private cartService:  CartService) {
+
   }
 
   ngOnInit(): void {
+    this.product = this.route.snapshot.data['product'];
   }
 
   changeIndex(i: number) {

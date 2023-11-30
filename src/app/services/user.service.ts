@@ -2,6 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {UserAuthService} from './user-auth.service';
 import {environment} from '../../environments/environment';
+import {ApiResponse} from '../model/api-response';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -13,11 +14,11 @@ export class UserService {
     constructor(private httpClient : HttpClient, private userAuthService : UserAuthService) {}
 
     public login(loginData) {
-        return this.httpClient.post(this.api_url + "/authenticate", loginData, {headers: this.requestHeader});
+        return this.httpClient.post<ApiResponse>(this.api_url + "/authenticate", loginData, {headers: this.requestHeader});
     }
 
     public register(registerData){
-      return this.httpClient.post(`${this.api_url}/registerUser`, registerData, {headers: this.requestHeader});
+      return this.httpClient.post<ApiResponse>(`${this.api_url}/registerUser`, registerData, {headers: this.requestHeader});
     }
     public forUser() {
         return this.httpClient.get(this.api_url + '/forUser', {responseType: 'text'})

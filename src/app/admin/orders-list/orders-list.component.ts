@@ -23,7 +23,7 @@ export class OrdersListComponent implements OnInit {
   getAllOrders(status){
     this.orderService.getAllOrders(status).subscribe(
       response => {
-        this.orders = response;
+        this.orders = response.object;
         console.log("from orders list: ",response);
       }, error => {
         console.error("from orders list: ",error);

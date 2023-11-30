@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import {Product} from '../model/product.model';
 import {ImageProcessingService} from '../services/image-processing.service';
 import {Router} from '@angular/router';
+import {ApiResponse} from '../model/api-response';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   public getProducts(keyword: string = "") {
     this.productService.getProducts(this.pageNumber, keyword).pipe(
-      map((x: Product[]) => x.map((product: Product) => this.imageProcessingService.createImages(product))))
+      map((response: ApiResponse) => response.object.map((product: Product) => this.imageProcessingService.createImages(product))))
       .subscribe((response: Product[]) => {
         // 4 is the size of the page in the backend
         this.showButton = response.length == 4;

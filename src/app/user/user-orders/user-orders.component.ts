@@ -26,7 +26,7 @@ export class UserOrdersComponent implements OnInit {
   getOrders(){
     this.orderService.getUserOrders().subscribe(
       response => {
-        this.orders = response;
+        this.orders = response.object;
         //creating images
         this.orders.forEach(order => {
           order.orderItems.forEach(orderItem => {

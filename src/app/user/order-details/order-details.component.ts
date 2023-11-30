@@ -22,7 +22,7 @@ export class OrderDetailsComponent implements OnInit {
     let orderId = this.route.snapshot.paramMap.get('orderId');
     this.orderService.getOrder(Number(orderId)).subscribe({
       next: response => {
-        this.order = response;
+        this.order = response.object;
         //creating images
         this.order.orderItems.forEach(orderItem => {
           orderItem.product = this.imageProcessingService.createImages(orderItem.product);

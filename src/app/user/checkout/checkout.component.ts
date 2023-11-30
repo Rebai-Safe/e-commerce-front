@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCart().subscribe({
       next: (response) => {
-        this.cart = response;
+        this.cart = response.object;
         console.log("cart from buy product: ",response);
       }, error: err => {
         console.log("error from buy product: ",err)

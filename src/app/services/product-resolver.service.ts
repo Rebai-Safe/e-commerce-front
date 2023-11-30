@@ -22,7 +22,7 @@ export class ProductResolverService implements Resolve<Product> {
     if (productId) {
       //we have to fetch details from backend
       return this.productService.getProductById(productId).pipe(
-        map(p => this.imageProcessingService.createImages(p))
+        map(data => this.imageProcessingService.createImages(data.object))
       )
     } else {
       //return empty product observable

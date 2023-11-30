@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserAuthService } from '../services/user-auth.service';
 import { UserService } from '../services/user.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ApiResponse} from '../model/api-response';
 
 @Component({
   selector: 'app-login',
@@ -27,10 +28,10 @@ export class LoginComponent implements OnInit {
   login(){
     console.log("from login component ", this.loginForm.value);
     this.userService.login(this.loginForm.value).subscribe(
-      (response: any) => {
+      (response: ApiResponse) => {
         console.log("from login component: ",response)
-        this.userAuthService.setRoles(response.user.roles)
-        this.userAuthService.setToken(response.jwtToken);
+        this.userAuthService.setRoles(response.object.user.roles)
+        this.userAuthService.setToken(response.object.jwtToken);
         this.router.navigate([''])
       },
       (error) => {

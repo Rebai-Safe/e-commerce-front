@@ -6,6 +6,7 @@ import {ImageProcessingService} from '../../services/image-processing.service';
 import {ProductService} from '../../services/product.service';
 import {ShowProductImagesDialogComponent} from '../show-product-images-dialog/show-product-images-dialog.component';
 import {Router} from '@angular/router';
+import {ApiResponse} from '../../model/api-response';
 
 @Component({
   selector: 'app-list-product',
@@ -37,7 +38,7 @@ export class ProductListComponent implements OnInit {
     //images are stored in db as bytes,
     // so we have to convert them to show in the component
     this.productService.getProducts(this.pageNumber, keyword).pipe(
-      map((x: Product[]) => x.map((product: Product) => {
+      map((response: ApiResponse) => response.object.map((product: Product) => {
         return this.imageProcessingService.createImages(product);
        })))
       .subscribe((response: Product[]) => {
