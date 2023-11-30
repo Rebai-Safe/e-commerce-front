@@ -1,14 +1,14 @@
 <div class="container mt-5">
     <div class="card" style="padding:20px">
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Username</mat-label>
-                <input matInput  name="userName" id="userName" placeholder="Username" ngModel>
+                <input matInput  formControlName="userName" placeholder="Username">
              </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>userPassword</mat-label>
-                <input matInput  name="userPassword" id="userPassword" placeholder="password" ngModel>
+                <input matInput  formControlName="userPassword" placeholder="password">
               </mat-form-field>
               <button type="submit" class="w-100" mat-raised-button color="primary">Login</button>
           </form>

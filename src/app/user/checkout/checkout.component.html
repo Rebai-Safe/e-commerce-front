@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="mb-3" align="right">
+    <button mat-raised-button color="accent" (click)="placeOrder()">Pay</button>
+  </div>
+  <div class="card p-3">
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Quantity</th>
+              <th>total</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+              <tr *ngFor="let element of cart.cartItems">
+                <td>{{element.product.productName}}</td>
+                <td>{{element.product.productDiscountedPrice}}</td>
+                <td>{{element.quantity}}</td>
+                <td>{{getProductTotal(element.quantity, element.product.productDiscountedPrice)}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>{{getTotal()}}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

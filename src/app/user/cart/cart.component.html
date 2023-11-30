@@ -1,0 +1,59 @@
+<div class="container">
+  <div *ngIf="cart != null">
+    <div class="mb-3" align="right">
+      <button mat-raised-button color="accent" (click)="goToCheckout()">Checkout</button>
+    </div>
+    <table mat-table [dataSource]="cart.cartItems" class="mat-elevation-z8">
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef> product Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.productName}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="productDescription">
+        <th mat-header-cell *matHeaderCellDef> product Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.productDescription}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="productActualPrice">
+        <th mat-header-cell *matHeaderCellDef> product Actual Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.productActualPrice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="productDiscountedPrice">
+        <th mat-header-cell *matHeaderCellDef> product Discounted Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.productDiscountedPrice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element">
+          <select #quantity
+                  class="form-select"
+                  [(ngModel)]="element.quantity"
+                  (change)="onQuantityChanged(element.product.productId, element.quantity)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon (click)="deleteItem(element.product.productId)" style="font-size: 22px; color: red; cursor: pointer">delete</mat-icon>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+  <div *ngIf="cart == null" class="empty-cart">
+     Your cart is empty, think about adding new products
+  </div>
+</div>

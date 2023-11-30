@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   gotToProductDetails(productId: number) {
-    this.router.navigate(['/product-details', {productId: productId}])
+    this.router.navigate(['/productDetails', {productId: productId}])
   }
 
   loadMoreProducts() {

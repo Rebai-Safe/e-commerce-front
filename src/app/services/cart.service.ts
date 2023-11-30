@@ -10,15 +10,16 @@ export class CartService {
   api_url = environment.api_url;
   constructor(private httpClient: HttpClient) { }
 
-  public addToCart(productId: number) {
-    return this.httpClient.get(`${this.api_url}/addToCart/${productId}`);
+  public addToCart(productId: number, quantity: number) {
+    return this.httpClient.get(`${this.api_url}/addToCart/${productId}/${quantity}`);
   }
 
-  public getCarts(){
-    return this.httpClient.get<any>(`${this.api_url}/getCarts`);
+  public getCart(){
+    return this.httpClient.get<any>(`${this.api_url}/getCart`);
   }
 
-  public deleteItem(cartId: number){
-    return this.httpClient.delete<any>(`${this.api_url}/deleteItem/${cartId}`);
+  public deleteItem(cartId: number, productId: number){
+    console.log("from cart service productId, cartId: ",productId, cartId);
+    return this.httpClient.delete<any>(`${this.api_url}/deleteItem/${cartId}/${productId}`);
   }
 }

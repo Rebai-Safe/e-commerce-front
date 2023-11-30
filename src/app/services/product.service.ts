@@ -10,8 +10,11 @@ import {Order} from '../model/order.model';
 export class ProductService {
 
   api_url = environment.api_url;
-
   constructor(private httpClient: HttpClient) {
+  }
+
+  public addProduct(product: FormData) {
+    return this.httpClient.post<Product>(`${this.api_url}/add-product`, product);
   }
 
   public getProducts(pageNumber: number, keyword: string = '') {
@@ -22,29 +25,12 @@ export class ProductService {
     return this.httpClient.get<Product>(`${this.api_url}/get-product-byId/${productId}`);
   }
 
-  public getProductForCheckout(isSingleProductCheckout, productId) {
+  public getProductForCheckout(productId, isSingleProductCheckout) {
     return this.httpClient.get<Product[]>(`${this.api_url}/get-product-details/${productId}/${isSingleProductCheckout}`);
   }
 
-  public addProduct(product: FormData) {
-    return this.httpClient.post<Product>(`${this.api_url}/add-product`, product);
-  }
 
-  public placeOrder(order: Order, isCartCheckout) {
-    return this.httpClient.post(`${this.api_url}/place-order/${isCartCheckout}`, order);
-  }
 
-  public getUserOrders(){
-    return this.httpClient.get<any>(`${this.api_url}/getOrders`);
-  }
-
-  public getAllOrders(status: string= "all"){
-    return this.httpClient.get<any>(`${this.api_url}/getAllOrders/${status}`);
-  }
-
-  public markAsDelivered(orderId: number){
-    return this.httpClient.get<any>(`${this.api_url}/markOrderDelivered/${orderId}`);
-  }
   public deleteProduct(id) {
     return this.httpClient.delete(`${this.api_url}/delete-product/${id}`);
   }

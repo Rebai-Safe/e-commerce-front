@@ -27,16 +27,8 @@ export class ProductDetailsComponent implements OnInit {
     this.selectedProductIndex = i;
   }
 
-  buyProduct(productId: number) {
-    this.router.navigate(['/buy-product', {
-      productId: productId,
-      isSingleProductCheckout: true
-     }]
-    );
-  }
-
   addToCart(productId: number) {
-    this.cartService.addToCart(productId).subscribe(
+    this.cartService.addToCart(productId, 1).subscribe(
        response => {
           console.log("from product details: ",response);
      }, err => {

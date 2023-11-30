@@ -35,12 +35,13 @@
 .action-btn {
   width: 200px;
   margin-right: 3px;
+  margin-bottom: 5px;
 }
 
 @media (max-width: 767px) {
   .action-btn {
     display: block;
     text-align: center;
-    margin-bottom: 5px;
+
   }
 }

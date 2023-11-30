@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 
@@ -10,15 +10,24 @@ import {Router} from '@angular/router';
 })
 export class RegisterUserComponent implements OnInit {
 
+  registerForm: FormGroup;
   constructor(private router: Router,
+              private fb: FormBuilder,
               private userService: UserService) { }
 
   ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      userName: [''],
+      userFirstName:  [''],
+      userLastName: [''],
+      userPassword: [''],
+    })
   }
 
-  register(registerForm: NgForm) {
-    this.userService.register(registerForm.value).subscribe(
+  register() {
+    this.userService.register(this.registerForm.value).subscribe(
       (response) => {
+        console.log("form register user: ", response);
         this.router.navigate(['/login']);
       }, (error) => {
         console.log("error from register user: ",error);

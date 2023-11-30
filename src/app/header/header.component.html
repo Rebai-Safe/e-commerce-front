@@ -11,11 +11,11 @@
      <div  *ngIf="isLoggedIn()">
        <ul #sideMenu>
          <li><a routerLink="/">Home</a></li>
-         <li *ngIf="isUser()"><a routerLink="/cart">cart</a></li>
-         <li *ngIf="isUser()"><a routerLink="/orders">My orders</a></li>
-         <li *ngIf="isAdmin()"><a routerLink="/product/add">Add product</a></li>
-         <li *ngIf="isAdmin()"><a  routerLink="/ordersList">orders list</a> </li>
-         <li *ngIf="isAdmin()"><a  routerLink="/product/list">products list</a> </li>
+         <li *ngIf="isUser()"><a routerLink="user/cart">My bag</a></li>
+         <li *ngIf="isUser()"><a routerLink="user/orders">My orders</a></li>
+         <li *ngIf="isAdmin()"><a  routerLink="/admin/addProduct">Add product</a></li>
+         <li *ngIf="isAdmin()"><a  routerLink="/admin/ordersList">Orders list</a> </li>
+         <li *ngIf="isAdmin()"><a  routerLink="/admin/productsList">Products list</a> </li>
          <li><button mat-raised-button color="warn" (click)="logout()">Logout</button></li>
          <i class="bi bi-x close-icon"  (click)="closeSideMenu()"></i>
        </ul>

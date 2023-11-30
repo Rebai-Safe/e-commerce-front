@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../services/user-auth.service';
 import { UserService } from '../services/user.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +11,27 @@ import { UserService } from '../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
   constructor(private userAuthService: UserAuthService,
               private userService: UserService,
+              private fb: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      userName: [''],
+      userPassword: ['']
+    })
   }
 
-  login(loginForm){
-    console.log("from login component ", loginForm.value);
-    this.userService.login(loginForm.value).subscribe(
+  login(){
+    console.log("from login component ", this.loginForm.value);
+    this.userService.login(this.loginForm.value).subscribe(
       (response: any) => {
+        console.log("from login component: ",response)
         this.userAuthService.setRoles(response.user.roles)
         this.userAuthService.setToken(response.jwtToken);
-
-        const role = response.user.roles[0].roleName;
-        if(role === 'ADMIN'){
-         this.router.navigate(['/admin'])
-         }
-         else {
-          this.router.navigate(['/user'])
-         }
-
+        this.router.navigate([''])
       },
       (error) => {
         console.log(error)

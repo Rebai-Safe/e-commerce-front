@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Total: {{order.orderAmount  | currency:'EUR':true}}
+    </div>
+    <div *ngFor="let orderItem of order.orderItems" class="card-body d-flex align-items-center">
+      <div class="img-container">
+        <img [src]="orderItem.product.productImages[0].url" alt="">
+      </div>
+      <div class="order-info">
+        <span>{{orderItem.product.productName}}</span><br>
+        <span>{{orderItem.quantity}}</span>
+      </div>
+    </div>
+    </div>
+</div>
+

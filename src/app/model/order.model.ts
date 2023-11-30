@@ -1,9 +1,14 @@
-import {OrderQuantity} from './order-quantity.model';
+import {OrderItem} from './order-item.model';
+import {OrderStatus} from '../enums/order-status';
 
-export interface Order{
-    fullName: string;
-    fullAddress: string;
-    contactNumber: string;
-    altContactNumber: string;
-    orderProductQuantityList: OrderQuantity[];
+export class Order{
+  orderId: number;
+  orderStatus: OrderStatus;
+  orderAmount: number;
+  orderItems: OrderItem[];
+
+
+  constructor() {
+
+  }
 }

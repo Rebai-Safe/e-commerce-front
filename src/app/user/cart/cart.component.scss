@@ -1,0 +1,17 @@
+@import "./../../../colors";
+
+table {
+  width: 100%;
+  margin: 0 auto;
+}
+table td{
+  padding: 10px;
+}
+.mat-column-productDescription{
+  width: 35% !important;
+}
+.empty-cart{
+  font-size: 18px;
+  color: $red-color;
+  text-align: center;
+}
