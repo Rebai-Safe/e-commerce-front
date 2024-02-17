@@ -9,7 +9,7 @@ export class UserService {
 
     api_url = environment.api_url;
 
-    requestHeader = new HttpHeaders({"NO-Auth": "True"})
+    requestHeader = new HttpHeaders({"No-Auth": "True"})
 
     constructor(private httpClient : HttpClient, private userAuthService : UserAuthService) {}
 

@@ -13,6 +13,7 @@ import {ApiResponse} from '../model/api-response';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errorMessage: string;
   constructor(private userAuthService: UserAuthService,
               private userService: UserService,
               private fb: FormBuilder,
@@ -26,18 +27,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log("from login component ", this.loginForm.value);
-    this.userService.login(this.loginForm.value).subscribe(
-      (response: ApiResponse) => {
-        console.log("from login component: ",response)
+    this.userService.login(this.loginForm.value).subscribe({
+      next: (response: ApiResponse) => {
+        console.log("Response from login component: ",response)
         this.userAuthService.setRoles(response.object.user.roles)
         this.userAuthService.setToken(response.object.jwtToken);
         this.router.navigate([''])
-      },
-      (error) => {
-        console.log(error)
+      },error: (error) => {
+        this.errorMessage = error.error.message;
+        console.log("Error from login component: ",error)
       }
-    )
+    })
   }
 
   goToRegisterUser() {
